@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rufus Productions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Bangers&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Comic Neue', cursive;
+    background: linear-gradient(180deg, #87CEEB 0%, #E0F7FA 40%, #90EE90 100%);
+    min-height: 100vh;
+    color: #1a1a1a;
+    overflow-x: hidden;
+  }
+
+  header {
+    background: #FFD700;
+    padding: 20px 10px;
+    text-align: center;
+    border-bottom: 6px solid #000;
+    position: relative;
+  }
+
+  .logo {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    color: #FF4500;
+    text-shadow: 
+      4px 4px 0 #000,
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  .tagline {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+    background: #fff;
+    display: inline-block;
+    padding: 6px 18px;
+    border: 3px solid #000;
+    border-radius: 30px;
+    transform: rotate(-2deg);
+  }
+
+  nav {
+    background: #FF6347;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    border-bottom: 5px solid #000;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 8px 14px;
+    background: #000;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    transition: all 0.15s ease;
+  }
+
+  nav a:hover {
+    background: #FFD700;
+    color: #000;
+    transform: scale(1.08) rotate(-3deg);
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 15px 60px;
+  }
+
+  section {
+    margin-bottom: 60px;
+  }
+
+  h2 {
+    font-family: 'Bangers', cursive;
+    font-size: 2.6rem;
+    color: #FF4500;
+    text-align: center;
+    margin-bottom: 25px;
+    text-shadow: 3px 3px 0 #000;
+    letter-spacing: 2px;
+  }
+
+  .card {
+    background: #fff;
+    border: 5px solid #000;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 10px 10px 0 #000;
+    position: relative;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    width: 40px;
+    height: 20px;
+    background: #FFD700;
+    border: 3px solid #000;
+    border-radius: 8px;
+  }
+
+  /* Socials */
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1a1a1a;
+    color: white;
+    text-decoration: none;
+    padding: 16px 28px;
+    border: 4px solid #000;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.15rem;
+    box-shadow: 6px 6px 0 #FF4500;
+    transition: all 0.2s;
+  }
+
+  .social-btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 #FF4500;
+  }
+
+  .social-btn.email {
+    background: #FF4500;
+    box-shadow: 6px 6px 0 #000;
+  }
+
+  .social-btn.email:hover {
+    box-shadow: 9px 9px 0 #000;
+  }
+
+  .social-btn.yt {
+    background: #FF0000;
+  }
+
+  /* Shared show / movie styles */
+  .show-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .show-title {
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
+    color: #8B008B;
+    text-shadow: 4px 4px 0 #000;
+    display: inline-block;
+    background: #FFD700;
+    padding: 10px 28px;
+    border: 5px solid #000;
+    border-radius: 16px;
+    transform: rotate(1deg);
+  }
+
+  .show-title.stop {
+    color: #006400;
+    background: #FF69B4;
+    transform: rotate(-1.5deg);
+  }
+
+  .show-title.movie {
+    color: #8B0000;
+    background: #1a1a1a;
+    color: #FF4500;
+    transform: rotate(-1deg);
+  }
+
+  .show-title.advisory {
+    color: #fff;
+    background: #8B0000;
+    transform: rotate(1.5deg);
+  }
+
+  .show-desc {
+    margin-top: 18px;
+    font-size: 1.2rem;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+
+  .episodes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .ep-btn {
+    font-family: 'Bangers', cursive;
+    font-size: 1.3rem;
+    padding: 16px 28px;
+    border: 4px solid #000;
+    border-radius: 14px;
+    cursor: pointer;
+    background: #00CED1;
+    color: #000;
+    box-shadow: 6px 6px 0 #000;
+    transition: all 0.15s;
+    letter-spacing: 1px;
+  }
+
+  .ep-btn:hover {
+    transform: translate(-3px, -3px) rotate(-2deg);
+    box-shadow: 9px 9px 0 #000;
+    background: #FFD700;
+  }
+
+  .ep-btn.active {
+    background: #FF4500;
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .ep-btn.rotate {
+    transform: rotate(12deg);
+    background: #FF69B4;
+  }
+
+  .ep-btn.rotate:hover {
+    transform: translate(-3px, -3px) rotate(18deg);
+    background: #FFD700;
+  }
+
+  .ep-btn.rotate.active {
+    transform: scale(1.05) rotate(12deg);
+    background: #FF4500;
+    color: white;
+  }
+
+  .ep-btn.horror {
+    background: #1a1a1a;
+    color: #FF4500;
+  }
+
+  .ep-btn.horror:hover {
+    background: #8B0000;
+    color: #fff;
+  }
+
+  .ep-btn.horror.active {
+    background: #FF4500;
+    color: #000;
+  }
+
+  .player-container {
+    background: #1a1a1a;
+    border: 6px solid #000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 12px 12px 0 #FF4500;
+    max-width: 720px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    position: relative;
+  }
+
+  .player-container.shorts {
+    max-width: 400px;
+    aspect-ratio: 9 / 16;
+  }
+
+  .player-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #222;
+    color: #FFD700;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .placeholder span {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  footer {
+    background: #000;
+    color: #FFD700;
+    text-align: center;
+    padding: 25px 15px;
+    border-top: 6px solid #FF4500;
+    font-weight: 700;
+  }
+
+  footer a {
+    color: #00CED1;
+    text-decoration: none;
+  }
+
+  .cloud {
+    position: absolute;
+    background: white;
+    border: 3px solid #000;
+    border-radius: 50%;
+    opacity: 0.85;
+  }
+
+  .cloud1 { width: 80px; height: 50px; top: 15px; left: 8%; }
+  .cloud2 { width: 60px; height: 40px; top: 40px; right: 12%; }
+
+  @media (max-width: 600px) {
+    .logo { font-size: 2.8rem; }
+    .show-title { font-size: 2.2rem; }
+    .ep-btn { font-size: 1.1rem; padding: 14px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="logo">RUFUS PRODUCTIONS</div>
+  <div class="tagline">Making Stuff That Probably Shouldn't Exist</div>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#socials">Contact</a>
+  <a href="#apartment9">Apartment 9</a>
+  <a href="#stopshow">The Stop Show</a>
+  <a href="#movies">Movies</a>
+  <a href="#advisory">Content Advisory</a>
+</nav>
+
+<main>
+  <!-- Home -->
+  <section id="home">
+    <div class="card">
+      <h2>Welcome to the Chaos</h2>
+      <p style="font-size:1.25rem; line-height:1.6; text-align:center;">
+        Rufus Productions is an independent creative house dedicated to weird stories, 
+        questionable life choices, and shows that feel like they were written at 3 a.m. 
+        after too much caffeine. No corporate notes. No focus groups. Just pure, 
+        unfiltered nonsense.
+      </p>
+    </div>
+  </section>
+
+  <!-- Socials -->
+  <section id="socials">
+    <h2>Hit Us Up</h2>
+    <div class="socials">
+      <a class="social-btn email" href="mailto:pjworldwide2014@gmail.com">
+        📧 pjworldwide2014@gmail.com
+      </a>
+      <a class="social-btn yt" href="https://www.youtube.com/@patrickorourke-j8l" target="_blank">
+        ▶ YouTube @patrickorourke-j8l
+      </a>
+    </div>
+  </section>
+
+  <!-- Apartment 9 -->
+  <section id="apartment9">
+    <div class="show-header">
+      <div class="show-title">APARTMENT 9</div>
+      <p class="show-desc">
+        A chaotic half-hour sitcom about the weirdos living on the 9th floor. 
+        Bad decisions, worse roommates, and zero adult supervision.
+      </p>
+    </div>
+
+    <div class="episodes">
+      <button class="ep-btn" onclick="loadApartment(1)">Episode 1<br>Eddie's Puke</button>
+      <button class="ep-btn" onclick="loadApartment(2)">Episode 2<br>The Sasquatch</button>
+    </div>
+
+    <div class="player-container shorts" id="apt-player">
+      <div class="placeholder" id="apt-placeholder">
+        <span>📺</span>
+        Click an episode above to watch
+      </div>
+      <iframe id="apt-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none;"></iframe>
+    </div>
+  </section>
+
+  <!-- The Stop Show Season 1 -->
+  <section id="stopshow">
+    <div class="show-header">
+      <div class="show-title stop">THE STOP SHOW</div>
+      <p class="show-desc">
+        Season 1 — Three episodes of pure stop-motion mayhem, bad timing, 
+        and characters who really should have stayed home.
+      </p>
+    </div>
+
+    <div class="episodes">
+      <button class="ep-btn" onclick="loadStop(1)">Episode 1</button>
+      <button class="ep-btn" onclick="loadStop(2)">Episode 2</button>
+      <button class="ep-btn rotate" onclick="loadStop(3)">Episode 3</button>
+    </div>
+
+    <div class="player-container" id="stop-player">
+      <div class="placeholder" id="stop-placeholder">
+        <span>🛑</span>
+        Click an episode above to watch Season 1
+      </div>
+      <iframe id="stop-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none;"></iframe>
+    </div>
+  </section>
+
+  <!-- Movies -->
+  <section id="movies">
+    <div class="show-header">
+      <div class="show-title movie">MOVIES</div>
+      <p class="show-desc">
+        Full-length chaos. Dim the lights. Question your life choices.
+      </p>
+    </div>
+
+    <div class="episodes">
+      <button class="ep-btn horror" onclick="loadMovie(1)">NO GUARDIAN<br><small>Horror</small></button>
+    </div>
+
+    <div class="player-container" id="movie-player">
+      <div class="placeholder" id="movie-placeholder">
+        <span>🎬</span>
+        Click the movie above to watch
+      </div>
+      <iframe id="movie-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none;"></iframe>
+    </div>
+  </section>
+
+  <!-- Content Advisory Season 1 Teasers -->
+  <section id="advisory">
+    <div class="show-header">
+      <div class="show-title advisory">CONTENT ADVISORY</div>
+      <p class="show-desc">
+        Season 1 Teasers — Viewer discretion is strongly advised.  
+        These are not for the easily offended.
+      </p>
+    </div>
+
+    <div class="episodes">
+      <button class="ep-btn" onclick="loadAdvisory(1)" style="background:#8B0000;color:#fff;">
+        Adolf Hitler in 2026
+      </button>
+    </div>
+
+    <div class="player-container" id="advisory-player">
+      <div class="placeholder" id="advisory-placeholder">
+        <span>⚠️</span>
+        Click the teaser above to watch
+      </div>
+      <iframe id="advisory-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none;"></iframe>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Rufus Productions • Made with questionable decisions<br>
+  <a href="mailto:pjworldwide2014@gmail.com">pjworldwide2014@gmail.com</a> • 
+  <a href="https://www.youtube.com/@patrickorourke-j8l" target="_blank">@patrickorourke-j8l</a>
+</footer>
+
+<script>
+  // Apartment 9 (Shorts)
+  const apartmentEps = {
+    1: "AV3zRALPecc",
+    2: "_ClNiV8ySY0"
+  };
+
+  function loadApartment(num) {
+    const frame = document.getElementById('apt-frame');
+    const placeholder = document.getElementById('apt-placeholder');
+    
+    document.querySelectorAll('#apartment9 .ep-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.closest('.ep-btn').classList.add('active');
+
+    frame.src = `https://www.youtube.com/embed/${apartmentEps[num]}?autoplay=1&rel=0`;
+    frame.style.display = 'block';
+    placeholder.style.display = 'none';
+  }
+
+  // The Stop Show Season 1
+  const stopEps = {
+    1: "uSGWA2baG2I",
+    2: "bOEW-p95W9Q",
+    3: "oqTYDpuE6bU"
+  };
+
+  function loadStop(num) {
+    const frame = document.getElementById('stop-frame');
+    const placeholder = document.getElementById('stop-placeholder');
+    
+    document.querySelectorAll('#stopshow .ep-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.closest('.ep-btn').classList.add('active');
+
+    frame.src = `https://www.youtube.com/embed/${stopEps[num]}?autoplay=1&rel=0`;
+    frame.style.display = 'block';
+    placeholder.style.display = 'none';
+  }
+
+  // Movies
+  const movieEps = {
+    1: "kh_D_6wI7UU"
+  };
+
+  function loadMovie(num) {
+    const frame = document.getElementById('movie-frame');
+    const placeholder = document.getElementById('movie-placeholder');
+    
+    document.querySelectorAll('#movies .ep-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.closest('.ep-btn').classList.add('active');
+
+    // start at 16 seconds as in the original link
+    frame.src = `https://www.youtube.com/embed/${movieEps[num]}?autoplay=1&start=16&rel=0`;
+    frame.style.display = 'block';
+    placeholder.style.display = 'none';
+  }
+
+  // Content Advisory Season 1 Teasers
+  const advisoryEps = {
+    1: "YESHYBaSUhU"
+  };
+
+  function loadAdvisory(num) {
+    const frame = document.getElementById('advisory-frame');
+    const placeholder = document.getElementById('advisory-placeholder');
+    
+    document.querySelectorAll('#advisory .ep-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.closest('.ep-btn').classList.add('active');
+
+    frame.src = `https://www.youtube.com/embed/${advisoryEps[num]}?autoplay=1&rel=0`;
+    frame.style.display = 'block';
+    placeholder.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
